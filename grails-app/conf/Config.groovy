@@ -15,18 +15,18 @@ grails.app.context = "/"
 grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
 grails.mime.use.accept.header = false
-grails.mime.types = [ html: ['text/html','application/xhtml+xml'],
-                      xml: ['text/xml', 'application/xml'],
-                      text: 'text/plain',
-                      js: 'text/javascript',
-                      rss: 'application/rss+xml',
-                      atom: 'application/atom+xml',
-                      css: 'text/css',
-                      csv: 'text/csv',
-                      all: '*/*',
-                      json: ['application/json','text/json'],
-                      form: 'application/x-www-form-urlencoded',
-                      multipartForm: 'multipart/form-data'
+grails.mime.types = [ html: ["text/html","application/xhtml+xml"],
+                      xml: ["text/xml", "application/xml"],
+                      text: "text/plain",
+                      js: "text/javascript",
+                      rss: "application/rss+xml",
+                      atom: "application/atom+xml",
+                      css: "text/css",
+                      csv: "text/csv",
+                      all: "*/*",
+                      json: ["application/json","text/json"],
+                      form: "application/x-www-form-urlencoded",
+                      multipartForm: "multipart/form-data"
                     ]
 // The default codec used to encode data with ${}
 grails.views.default.codec="none" // none, html, base64
@@ -35,7 +35,7 @@ grails.converters.encoding="UTF-8"
 // enable Sitemesh preprocessing of GSP pages
 grails.views.gsp.sitemesh.preprocess = true
 // scaffolding templates configuration
-grails.scaffolding.templates.domainSuffix = 'Instance'
+grails.scaffolding.templates.domainSuffix = "Instance"
 
 // Set to false to use the new Grails 1.2 JSONBuilder in the render method
 grails.json.legacy.builder=false
@@ -66,28 +66,30 @@ log4j = {
     // appender:
     //
     //appenders {
-    //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
+    //    console name:"stdout", layout:pattern(conversionPattern: "%c{2} %m%n")
     //}
 
 
-    error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
-	       'org.codehaus.groovy.grails.web.pages', //  GSP
-	       'org.codehaus.groovy.grails.web.sitemesh', //  layouts
-	       'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
-	       'org.codehaus.groovy.grails.web.mapping', // URL mapping
-	       'org.codehaus.groovy.grails.commons', // core / classloading
-	       'org.codehaus.groovy.grails.plugins', // plugins
-	       'org.codehaus.groovy.grails.orm.hibernate', // hibernate integration
-	       'org.springframework',
-	       'org.hibernate',
-           'net.sf.ehcache.hibernate'
+    error  "org.codehaus.groovy.grails.web.servlet",  //  controllers
+	       "org.codehaus.groovy.grails.web.pages", //  GSP
+	       "org.codehaus.groovy.grails.web.sitemesh", //  layouts
+	       "org.codehaus.groovy.grails.web.mapping.filter", // URL mapping
+	       "org.codehaus.groovy.grails.web.mapping", // URL mapping
+	       "org.codehaus.groovy.grails.commons", // core / classloading
+	       "org.codehaus.groovy.grails.plugins", // plugins
+	       "org.codehaus.groovy.grails.orm.hibernate", // hibernate integration
+	       "org.springframework",
+	       "org.hibernate",
+           "net.sf.ehcache.hibernate"
 
-    warn   'org.mortbay.log'
+    warn   "org.mortbay.log"
 }
 
 
      
 // Added by the Spring Security Core plugin:
-grails.plugins.springsecurity.userLookup.userDomainClassName = 'votething.auth.User'
-grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'votething.auth.UserRole'
-grails.plugins.springsecurity.authority.className = 'votething.auth.Role'
+grails.plugins.springsecurity.userLookup.userDomainClassName = "votething.auth.User"
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = "votething.auth.UserRole"
+grails.plugins.springsecurity.authority.className = "votething.auth.Role"
+rememberMe.cookieName = "votething_remember_me"
+rememberMe.key = "9faa3764842f477cb9af4a91f2bcf16f"
