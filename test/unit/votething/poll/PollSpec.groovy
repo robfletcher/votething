@@ -15,22 +15,22 @@ class PollSpec extends UnitSpec {
 		when: "a poll is created with no title or creator"
 		def poll = new Poll()
 
-		then: "validation should fail"
+		then: "validation fails"
 		!poll.validate()
 
-		and: "nullable errors should be set on the title and creator fields"
+		and: "nullable errors are present on the title and creator fields"
 		poll.errors.title == "nullable"
 		poll.errors.creator == "nullable"
     }
 
-	def "Poll requires a title"() {
+	def "Poll requires a non-blank title"() {
 		when: "a poll is created with a blank title"
 		def poll = new Poll(title: "", creator: user)
 
-		then: "validation should fail"
+		then: "validation fails"
 		!poll.validate()
 
-		and: "blank errors should be set on the title field"
+		and: "blank errors are present on the title field"
 		poll.errors.title == "blank"
 	}
 
@@ -38,10 +38,10 @@ class PollSpec extends UnitSpec {
 		when: "a poll is created with only one option"
 		def poll = new Poll(title: "whatever", creator: user, options: ["whatever"])
 
-		then: "validation should fail"
+		then: "validation fails"
 		!poll.validate()
 
-		and: "minimum size error should be set on the options field"
+		and: "minimum size are present set on the options field"
 		poll.errors.options == "minSize"
 	}
 }

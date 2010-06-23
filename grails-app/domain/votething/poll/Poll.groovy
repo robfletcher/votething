@@ -6,7 +6,7 @@ class Poll {
 
 	User creator
 	String title
-	List<String> options
+	List<String> options = []
 
 	static hasMany = [options: String]
 
@@ -14,4 +14,10 @@ class Poll {
 		title blank: false
 		options minSize: 2
     }
+
+	static transients = ["optionRange"]
+
+	Range<Integer> getOptionRange() {
+		0..<options.size()
+	}
 }
