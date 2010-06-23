@@ -1,6 +1,6 @@
 package votething.poll
 
-import grails.plugin.spock.*
+import grails.plugin.spock.UnitSpec
 import votething.auth.User
 
 class PollSpec extends UnitSpec {
@@ -43,5 +43,13 @@ class PollSpec extends UnitSpec {
 
 		and: "minimum size are present set on the options field"
 		poll.errors.options == "minSize"
+	}
+	
+	def "Date created is set automatically"() {
+		when: "a new poll is saved"
+		def poll = new Poll(title: "whatever", creator: user, options: ["option 1", "option 2"]).save()
+		
+		then: "date created is set automatically"
+		poll.dateCreated != null
 	}
 }

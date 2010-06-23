@@ -85,7 +85,9 @@ log4j = {
     warn   "org.mortbay.log"
 }
 
-
+grails.gorm.default.mapping = {
+	"user-type"(type: org.joda.time.contrib.hibernate.PersistentDateTime, class: org.joda.time.DateTime)
+}
      
 // Added by the Spring Security Core plugin:
 grails.plugins.springsecurity.userLookup.userDomainClassName = "votething.auth.User"

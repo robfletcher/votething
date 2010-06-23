@@ -1,5 +1,6 @@
 package votething.poll
 
+import org.joda.time.DateTime
 import votething.auth.User
 
 class Poll {
@@ -7,6 +8,7 @@ class Poll {
 	User creator
 	String title
 	List<String> options = []
+	DateTime dateCreated
 
 	static hasMany = [options: String]
 
@@ -15,9 +17,15 @@ class Poll {
 		options minSize: 2
     }
 
-	static transients = ["optionRange"]
-
+	static transients = ["optionRange", "votes"]
+	
 	Range<Integer> getOptionRange() {
 		0..<options.size()
+	}
+
+	List<Integer> getVotes() {
+		optionRange.collect {
+			Vote.countByPollAndOption(this, it)
+		}
 	}
 }
