@@ -48,8 +48,6 @@
           <root url="jar://$USER_HOME$/.ivy2/cache/org.gmock/gmock/jars/gmock-0.8.0.jar!/" />
           <root url="jar://$USER_HOME$/.ivy2/cache/org.hamcrest/hamcrest-all/sources/hamcrest-all-1.1-sources.jar!/" />
           <root url="jar://$USER_HOME$/.ivy2/cache/org.hamcrest/hamcrest-all/jars/hamcrest-all-1.1.jar!/" />
-          <root url="jar://$USER_HOME$/.ivy2/cache/jmock/jmock/jars/jmock-1.1.0.jar!/" />
-          <root url="jar://$USER_HOME$/.ivy2/cache/org.easymock/easymock/jars/easymock-2.2.jar!/" />
           <root url="jar://$USER_HOME$/.ivy2/cache/net.sourceforge.htmlunit/htmlunit/jars/htmlunit-2.7.jar!/" />
           <root url="jar://$USER_HOME$/.ivy2/cache/net.sourceforge.htmlunit/htmlunit/sources/htmlunit-2.7-sources.jar!/" />
           <root url="jar://$USER_HOME$/.ivy2/cache/commons-httpclient/commons-httpclient/jars/commons-httpclient-3.1.jar!/" />
@@ -65,6 +63,15 @@
           <root url="jar://$USER_HOME$/.ivy2/cache/xalan/xalan/sources/xalan-2.7.0-sources.jar!/" />
           <root url="jar://$USER_HOME$/.ivy2/cache/xalan/xalan/jars/xalan-2.7.0.jar!/" />
           <root url="jar://$USER_HOME$/.ivy2/cache/org.spockframework/spock-core/jars/spock-core-0.4-groovy-1.7.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.apache.xerces/com.springsource.org.apache.xerces/jars/com.springsource.org.apache.xerces-2.8.1.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.apache.commons/com.springsource.org.apache.commons.httpclient/jars/com.springsource.org.apache.commons.httpclient-3.1.0.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.apache.commons/com.springsource.org.apache.commons.codec/jars/com.springsource.org.apache.commons.codec-1.3.0.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.openid4java/com.springsource.org.openid4java/jars/com.springsource.org.openid4java-0.9.5.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.springframework.security/org.springframework.security.openid/jars/org.springframework.security.openid-3.0.2.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.springframework.security/org.springframework.security.web/jars/org.springframework.security.web-3.0.2.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.springframework.security/org.springframework.security.core/jars/org.springframework.security.core-3.0.2.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/net.sourceforge.nekohtml/com.springsource.org.cyberneko.html/jars/com.springsource.org.cyberneko.html-1.9.13.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.apache.xml/com.springsource.org.apache.xml.resolver/jars/com.springsource.org.apache.xml.resolver-1.2.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

@@ -6,6 +6,7 @@
         <webroots>
           <root url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/bean-fields-1.0-RC3/web-app" relative="/" />
           <root url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/spock-0.4-groovy-1.7/web-app" relative="/" />
+          <root url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/cache-headers-1.0.1/web-app" relative="/" />
         </webroots>
         <sourceRoots />
       </configuration>
@@ -22,6 +23,8 @@
       <sourceFolder url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/build-test-data-1.1.0/grails-app/controllers" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/build-test-data-1.1.0/grails-app/services" isTestSource="false" />
     </content>
+    <content url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/cache-headers-1.0.1" />
+    <content url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/hibernate-1.3.1" />
     <content url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/joda-time-1.0">
       <sourceFolder url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/joda-time-1.0/src/java" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/joda-time-1.0/src/groovy" isTestSource="false" />
@@ -35,6 +38,16 @@
       <sourceFolder url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/spock-0.4-groovy-1.7/src/java" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/spock-0.4-groovy-1.7/src/groovy" isTestSource="false" />
     </content>
+    <content url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/spring-security-core-0.4">
+      <sourceFolder url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/spring-security-core-0.4/src/java" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/spring-security-core-0.4/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/spring-security-core-0.4/grails-app/services" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/spring-security-core-0.4/grails-app/taglib" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/spring-security-openid-0.1.1">
+      <sourceFolder url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/spring-security-openid-0.1.1/src/java" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/spring-security-openid-0.1.1/src/groovy" isTestSource="false" />
+    </content>
     <content url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/springcache-1.2">
       <sourceFolder url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/springcache-1.2/src/java" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/springcache-1.2/src/groovy" isTestSource="false" />
@@ -45,13 +58,46 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="grails-1.3.1" level="application" />
     <orderEntry type="module-library" exported="">
       <library name="Grails User Library">
         <CLASSES>
           <root url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/joda-time-1.0/lib" />
           <root url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/selenium-rc-1.0.2/lib" />
           <root url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/tomcat-1.3.1/lib" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/net.sf.ehcache/ehcache-web/javadocs/ehcache-web-2.0.0-javadoc.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/net.sf.ehcache/ehcache-web/jars/ehcache-web-2.0.0.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/net.sf.ehcache/ehcache-web/sources/ehcache-web-2.0.0-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/javax.servlet/servlet-api/jars/servlet-api-2.4.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.seleniumhq.selenium.client-drivers/selenium-java-client-driver/sources/selenium-java-client-driver-1.0.2-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.seleniumhq.selenium.client-drivers/selenium-java-client-driver/jars/selenium-java-client-driver-1.0.2.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.seleniumhq.selenium.core/selenium-core/jars/selenium-core-1.0.1.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.gmock/gmock/jars/gmock-0.8.0.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.hamcrest/hamcrest-all/sources/hamcrest-all-1.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.hamcrest/hamcrest-all/jars/hamcrest-all-1.1.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/net.sourceforge.htmlunit/htmlunit/jars/htmlunit-2.7.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/net.sourceforge.htmlunit/htmlunit/sources/htmlunit-2.7-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/commons-httpclient/commons-httpclient/jars/commons-httpclient-3.1.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/commons-codec/commons-codec/sources/commons-codec-1.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/commons-codec/commons-codec/jars/commons-codec-1.4.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/commons-codec/commons-codec/javadocs/commons-codec-1.4-javadoc.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/net.sourceforge.htmlunit/htmlunit-core-js/jars/htmlunit-core-js-2.7.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/xerces/xercesImpl/jars/xercesImpl-2.9.1.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/net.sourceforge.nekohtml/nekohtml/jars/nekohtml-1.9.14.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/net.sourceforge.cssparser/cssparser/jars/cssparser-0.9.5.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.w3c.css/sac/jars/sac-1.3.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/commons-logging/commons-logging/jars/commons-logging-1.1.1.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/xalan/xalan/sources/xalan-2.7.0-sources.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/xalan/xalan/jars/xalan-2.7.0.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.spockframework/spock-core/jars/spock-core-0.4-groovy-1.7.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.apache.xerces/com.springsource.org.apache.xerces/jars/com.springsource.org.apache.xerces-2.8.1.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.apache.commons/com.springsource.org.apache.commons.httpclient/jars/com.springsource.org.apache.commons.httpclient-3.1.0.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.apache.commons/com.springsource.org.apache.commons.codec/jars/com.springsource.org.apache.commons.codec-1.3.0.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.openid4java/com.springsource.org.openid4java/jars/com.springsource.org.openid4java-0.9.5.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.springframework.security/org.springframework.security.openid/jars/org.springframework.security.openid-3.0.2.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.springframework.security/org.springframework.security.web/jars/org.springframework.security.web-3.0.2.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.springframework.security/org.springframework.security.core/jars/org.springframework.security.core-3.0.2.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/net.sourceforge.nekohtml/com.springsource.org.cyberneko.html/jars/com.springsource.org.cyberneko.html-1.9.13.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/org.apache.xml/com.springsource.org.apache.xml.resolver/jars/com.springsource.org.apache.xml.resolver-1.2.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -60,6 +106,7 @@
         <jarDirectory url="file://$USER_HOME_GRAILS$/1.3.1/projects/votething/plugins/tomcat-1.3.1/lib" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="library" scope="PROVIDED" name="grails-1.3.1" level="application" />
   </component>
 </module>
 
