@@ -11,6 +11,10 @@ class PollPage extends Page {
 		new PollPage(poll)
 	}
 
+	static LoginPage openAnonymous(Poll poll) {
+		new LoginPage("/poll/$poll.uri", PollPage)
+	}
+
 	PollPage() {
 		super()
 	}
@@ -22,6 +26,10 @@ class PollPage extends Page {
 	}
 
 	void verifyPage() {
+	}
+
+	String getTitle() {
+		selenium.title
 	}
 
 	String getHeading() {

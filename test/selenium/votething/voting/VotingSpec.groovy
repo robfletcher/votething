@@ -11,6 +11,7 @@ import votething.pages.PollPage
 class VotingSpec extends Specification {
 
 	def cleanup() {
+		LoginPage.logout()
 		Poll.withTransaction {
 			Poll.list()*.delete()
 			UserRole.removeAll Role.findByAuthority(Role.USER)
@@ -38,5 +39,28 @@ class VotingSpec extends Specification {
 		then: "he should see the poll details"
 		pollPage.heading == poll.title
 		pollPage.options == poll.options
+	}
+
+	def "A user must log in before visiting a poll page"() {
+		given: "a user"
+		Poll.withTransaction {
+			def user = User.build(username: "blackbeard")
+			UserRole.create(user, Role.findByAuthority(Role.USER), true)
+		}
+
+		and: "a poll"
+		def poll = null
+		Poll.withTransaction {
+			poll = Poll.build()
+		}
+
+		when: "an anonymous user tries to visit the poll page"
+		def loginPage = PollPage.openAnonymous(poll)
+
+		and: "they then log in"
+		def pollPage = loginPage.loginAs("blackbeard")
+
+		then: "they are redirected back to the poll"
+		pollPage.title == poll.title
 	}
 }

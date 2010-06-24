@@ -5,6 +5,8 @@ import grails.plugins.selenium.pageobjects.Page
 class LoginPage extends Page {
 
 	static final String LOGIN_FAILED_MESSAGE = "Sorry, we were not able to find a user with that username and password."
+	
+	private final Class<? extends Page> loginSuccessPage
 
 	static LoginPage open() {
 		new LoginPage("/login")
@@ -14,7 +16,7 @@ class LoginPage extends Page {
 		new HomePage("/logout")
 	}
 
-	static HomePage login(String username, String password = "password") {
+	static Page login(String username, String password = "password") {
 		return open().loginAs(username, password)
 	}
 
@@ -23,18 +25,23 @@ class LoginPage extends Page {
 	}
 
 	protected LoginPage(String uri) {
+		this(uri, HomePage)
+	}
+
+	LoginPage(String uri, Class<? extends Page> loginSuccessPage) {
 		super(uri)
+		this.loginSuccessPage = loginSuccessPage
 	}
 
 	void verifyPage() {
 		pageTitleIs "Login"
 	}
 
-	HomePage loginAs(String username, String password = "password") {
+	Page loginAs(String username, String password = "password") {
 		selenium.type "j_username", username
 		selenium.type "j_password", password
 		selenium.clickAndWait "css=input[type=submit]"
-		return new HomePage()
+		return loginSuccessPage.newInstance()
 	}
 
 	LoginPage loginWithIncorrectDetails(String username, String password = "password") {

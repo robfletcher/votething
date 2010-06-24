@@ -2,7 +2,7 @@ package votething.auth
 
 class Role {
 
-	static final String USER = "AUTHORITY_USER"
+	static final String USER = "ROLE_USER"
 
 	String authority
 
