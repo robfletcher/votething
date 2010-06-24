@@ -2,6 +2,7 @@ package votething.poll
 
 import grails.plugin.spock.UnitSpec
 import votething.auth.User
+import grails.plugin.spock.IntegrationSpec
 
 class PollSpec extends UnitSpec {
 
@@ -47,9 +48,17 @@ class PollSpec extends UnitSpec {
 	
 	def "Date created is set automatically"() {
 		when: "a new poll is saved"
-		def poll = new Poll(title: "whatever", creator: user, options: ["option 1", "option 2"]).save()
+		def poll = new Poll(title: "whatever", creator: user, options: ["option 1", "option 2"]).save(failOnError: true)
 		
 		then: "date created is set automatically"
 		poll.dateCreated != null
+	}
+
+	def "Poll URI is set automatically"() {
+		when: "a new poll is saved"
+		def poll = new Poll(title: "whatever", creator: user, options: ["option 1", "option 2"]).save(failOnError: true)
+
+		then: "its URI is set automatically"
+		poll.uri ==~ /[\w\d]+/
 	}
 }

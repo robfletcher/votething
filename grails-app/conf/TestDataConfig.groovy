@@ -1,4 +1,5 @@
 import org.codehaus.groovy.grails.commons.ApplicationHolder
+import votething.auth.User
 
 environments {
 	production {
@@ -18,7 +19,8 @@ testDataConfig {
 			passwordExpired = false
 		}
 		"votething.poll.Poll" {
-			options = ["option 1", "option 2"]
+			creator = {-> User.buildLazy(username: "blackbeard") }
+			options = {-> (1..5).collect { "Option $it".toString() } }
 		}
 	}
 }

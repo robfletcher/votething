@@ -2,14 +2,15 @@
 
 ## Basic functionality
 
-* User can log in & register
+* Logged in user can vote on a public poll
+   * Only one vote per user
+   * Generate poll URL nicely
 
 * User can create a public poll
    * Must be logged in
    * Creates poll with unique url
 
-* User can vote on a public poll
-   * Only one vote per user (logged in or cookie)
+* User can register
 
 * User can create an invite-only poll
    * Only people on invite list can vote
