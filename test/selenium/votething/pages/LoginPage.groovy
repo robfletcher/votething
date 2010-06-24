@@ -1,6 +1,7 @@
 package votething.pages
 
 import grails.plugins.selenium.pageobjects.Page
+import votething.auth.User
 
 class LoginPage extends Page {
 
@@ -17,7 +18,11 @@ class LoginPage extends Page {
 	}
 
 	static Page login(String username, String password = "password") {
-		return open().loginAs(username, password)
+		open().loginAs(username, password)
+	}
+
+	static Page login(User user, String password = "password") {
+		login(user.username, password)
 	}
 
 	LoginPage() {
@@ -25,7 +30,7 @@ class LoginPage extends Page {
 	}
 
 	protected LoginPage(String uri) {
-		this(uri, HomePage)
+		super(uri)
 	}
 
 	LoginPage(String uri, Class<? extends Page> loginSuccessPage) {
@@ -41,7 +46,15 @@ class LoginPage extends Page {
 		selenium.type "j_username", username
 		selenium.type "j_password", password
 		selenium.clickAndWait "css=input[type=submit]"
-		return loginSuccessPage.newInstance()
+		if (loginSuccessPage) {
+			return loginSuccessPage.newInstance()
+		} else {
+			return new HomePage()
+		}
+	}
+
+	Page loginAs(User user, String password = "password") {
+		loginAs(user.username, password)
 	}
 
 	LoginPage loginWithIncorrectDetails(String username, String password = "password") {

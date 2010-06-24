@@ -7,31 +7,44 @@ import votething.auth.UserRole
 import votething.poll.Poll
 import votething.pages.LoginPage
 import votething.pages.PollPage
+import spock.lang.Shared
+import votething.poll.Vote
 
 class VotingSpec extends Specification {
+
+	@Shared User user
+
+	def setupSpec() {
+		Poll.withTransaction {
+			user = User.build(username: "blackbeard")
+			UserRole.create(user, Role.findByAuthority(Role.USER), true)
+		}
+	}
 
 	def cleanup() {
 		LoginPage.logout()
 		Poll.withTransaction {
+			Vote.list()*.delete()
 			Poll.list()*.delete()
+		}
+	}
+
+	def cleanupSpec() {
+		Poll.withTransaction {
 			UserRole.removeAll Role.findByAuthority(Role.USER)
 			User.list()*.delete()
 		}
 	}
 
 	def "A logged-in user can visit a poll page"() {
-		given: "a logged in user"
-		Poll.withTransaction {
-			def user = User.build(username: "blackbeard")
-			UserRole.create(user, Role.findByAuthority(Role.USER), true)
-		}
-		LoginPage.login("blackbeard")
-
-		and: "a poll"
+		given: "a poll"
 		def poll = null
 		Poll.withTransaction {
 			poll = Poll.build()
 		}
+
+		and: "a logged-in user"
+		LoginPage.login(user)
 
 		when: "the user tries to visit the poll page"
 		def pollPage = PollPage.open(poll)
@@ -42,13 +55,7 @@ class VotingSpec extends Specification {
 	}
 
 	def "A user must log in before visiting a poll page"() {
-		given: "a user"
-		Poll.withTransaction {
-			def user = User.build(username: "blackbeard")
-			UserRole.create(user, Role.findByAuthority(Role.USER), true)
-		}
-
-		and: "a poll"
+		given: "a poll"
 		def poll = null
 		Poll.withTransaction {
 			poll = Poll.build()
@@ -58,9 +65,32 @@ class VotingSpec extends Specification {
 		def loginPage = PollPage.openAnonymous(poll)
 
 		and: "they then log in"
-		def pollPage = loginPage.loginAs("blackbeard")
+		def pollPage = loginPage.loginAs(user)
 
 		then: "they are redirected back to the poll"
 		pollPage.title == poll.title
+	}
+
+	def "A user can vote on a poll"() {
+		given: "a poll"
+		def poll = null
+		Poll.withTransaction {
+			poll = Poll.build()
+		}
+
+		and: "a logged-in user"
+		LoginPage.login(user)
+
+		when: "the user votes on a poll"
+		def pollPage = PollPage.open(poll)
+		pollPage.voteFor(poll.options[i])
+
+		then: "a vote is recorded"
+		def vote = Vote.findByUserAndPoll(user, poll)
+		vote != null
+		vote.option == i
+
+		where:
+		i << (0..4)
 	}
 }

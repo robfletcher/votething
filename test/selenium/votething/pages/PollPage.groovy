@@ -43,4 +43,10 @@ class PollPage extends Page {
 		}
 	}
 
+	PollPage voteFor(String option) {
+		int index = options.indexOf(option)
+		selenium.check "css=input#option-$index"
+		selenium.clickAndWait "css=input[name=submitVote]"
+		return new PollPage()
+	}
 }
