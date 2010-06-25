@@ -53,12 +53,4 @@ class PollSpec extends UnitSpec {
 		then: "date created is set automatically"
 		poll.dateCreated != null
 	}
-
-	def "Poll URI is set automatically"() {
-		when: "a new poll is saved"
-		def poll = new Poll(title: "whatever", creator: user, options: ["option 1", "option 2"]).save(failOnError: true)
-
-		then: "its URI is set automatically"
-		poll.uri ==~ /[\w\d]+/
-	}
 }

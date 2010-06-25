@@ -10,7 +10,7 @@ import grails.plugins.springsecurity.SpringSecurityService
 class PollControllerSpec extends ControllerSpec {
 
 	@Shared List<Poll> polls = (1..3).collect { i ->
-		new Poll(title: "Poll $i", uri: "poll$i", options: ["Option 1", "Option 2", "Option 3"])
+		new Poll(title: "Poll $i", options: ["Option 1", "Option 2", "Option 3"])
 	}
 
 	User user = new User(username: "blackbeard")

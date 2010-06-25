@@ -9,14 +9,12 @@ class Poll {
 	String title
 	List<String> options = []
 	DateTime dateCreated
-	String uri
 
 	static hasMany = [options: String]
 
 	static constraints = {
 		title blank: false
 		options minSize: 2
-		uri nullable: true // unfortunately required so validation will pass
 	}
 
 	static transients = ["optionRange", "votes"]
@@ -29,9 +27,5 @@ class Poll {
 		optionRange.collect {
 			Vote.countByPollAndOption(this, it)
 		}
-	}
-
-	void beforeInsert() {
-		uri = Integer.toHexString(UUID.randomUUID().hashCode())
 	}
 }
