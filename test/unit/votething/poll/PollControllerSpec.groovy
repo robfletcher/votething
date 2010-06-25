@@ -2,8 +2,7 @@ package votething.poll
 
 import grails.plugin.spock.ControllerSpec
 import spock.lang.Shared
-import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND
-import static javax.servlet.http.HttpServletResponse.SC_OK
+import static javax.servlet.http.HttpServletResponse.*
 import votething.auth.User
 import org.apache.commons.lang.math.RandomUtils
 import grails.plugins.springsecurity.SpringSecurityService
@@ -85,5 +84,25 @@ class PollControllerSpec extends ControllerSpec {
 		where:
 		poll << polls
 		option << [0, 1, 2]
+	}
+
+	def "The vote action requires a valid option"() {
+		given: "a logged in user"
+		controller.springSecurityService = Mock(SpringSecurityService)
+		controller.springSecurityService.principal >> [id: user.id]
+
+		when: "the user submits a vote with an invalid option"
+		controller.params.id = polls[0].id
+		controller.params.option = option
+		controller.vote()
+
+		then: "then an error is reported"
+		controller.response.status == SC_INTERNAL_SERVER_ERROR
+
+		and: "the vote is not registered"
+		Vote.count() == 0
+
+		where:
+		option << [null, 9, -1, "a"]
 	}
 }
