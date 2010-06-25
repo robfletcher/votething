@@ -83,7 +83,7 @@ class PollControllerSpec extends ControllerSpec {
 
 		where:
 		poll << polls
-		option << [0, 1, 2]
+		option = RandomUtils.nextInt(poll.options.size())
 	}
 
 	def "The vote action requires a valid option"() {
