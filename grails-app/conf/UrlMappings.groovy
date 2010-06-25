@@ -1,11 +1,6 @@
 class UrlMappings {
 	static mappings = {
 
-		"/poll/$uri" {
-			controller = "poll"
-			action = "show"
-		}
-
 		"/$controller/$action?/$id?" {
 			constraints {
 				// apply constraints here

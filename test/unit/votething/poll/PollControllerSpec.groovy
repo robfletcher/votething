@@ -22,21 +22,21 @@ class PollControllerSpec extends ControllerSpec {
 		mockDomain User, [user]
 	}
 
-	def "The show action requires a valid URI parameter"() {
-		when: "the show action is invoked without a valid URI"
-		controller.params.uri = uri
+	def "The show action requires a valid id parameter"() {
+		when: "the show action is invoked without a valid id"
+		controller.params.id = id
 		controller.show()
 
 		then: "the response status is 404"
 		controller.response.status == SC_NOT_FOUND
 
 		where:
-		uri << [null, "invalid"]
+		id << [null, 9]
 	}
 
-	def "The show action finds the poll with the specified URI"() {
-		when: "the show action is invoked with a valid URI"
-		controller.params.uri = poll.uri
+	def "The show action finds the poll with the specified id"() {
+		when: "the show action is invoked with a valid id"
+		controller.params.id = poll.id
 		def model = controller.show()
 
 		then: "the response status is 200"
@@ -73,7 +73,7 @@ class PollControllerSpec extends ControllerSpec {
 
 		then: "the user is redirected to the show action"
 		controller.redirectArgs.action == "show"
-		controller.redirectArgs.params == [uri: poll.uri]
+		controller.redirectArgs.id == poll.id
 
 		and: "the vote is registered"
 		Vote.count() == 1

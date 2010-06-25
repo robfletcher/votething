@@ -12,7 +12,7 @@ class PollPage extends Page {
 	}
 
 	static LoginPage openAnonymous(Poll poll) {
-		new LoginPage("/poll/$poll.uri", PollPage)
+		new LoginPage("/poll/show/$poll.id", PollPage)
 	}
 
 	PollPage() {
@@ -20,7 +20,7 @@ class PollPage extends Page {
 	}
 
 	protected PollPage(Poll poll) {
-		super("/poll/$poll.uri" as String)
+		super("/poll/show/$poll.id" as String)
 		this.expectedTitle = poll.title
 		pageTitleIs expectedTitle
 	}

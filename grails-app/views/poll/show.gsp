@@ -11,11 +11,10 @@
 			<g:if test="${flash.message}">
 				<div class="message">${flash.message}</div>
 			</g:if>
-			<g:form controller="poll" action="vote" useToken="true">
+			<g:form controller="poll" action="vote">
 				<g:hiddenField name="id" value="${pollInstance.id}"/>
 				<fieldset class="options">
 					<legend><g:message code="default.options.label" default="Choose:"/></legend>
-					<h2>${pollInstance.options}</h2>
 					<ol>
 						<g:each var="option" in="${pollInstance.options}" status="i">
 							<li>

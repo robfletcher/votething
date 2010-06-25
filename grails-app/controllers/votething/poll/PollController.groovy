@@ -11,9 +11,13 @@ class PollController {
 
 	def springSecurityService
 
+	def beforeInterceptor = {
+		println params
+	}
+
 	@Secured("ROLE_USER")
 	def show = {
-		def pollInstance = params.uri ? Poll.findByUri(params.uri) : null
+		def pollInstance = params.id ? Poll.read(params.id) : null
 		if (pollInstance) {
 			[pollInstance: pollInstance]
 		} else {
@@ -28,7 +32,7 @@ class PollController {
 			def voteInstance = new Vote(user: loggedInUser, poll: pollInstance, option: params.int("option"))
 			log.info "vote: saving ${voteInstance.dump()}"
 			if (voteInstance.save()) {
-				redirect action: "show", params: [uri: pollInstance.uri]
+				redirect action: "show", id: pollInstance.id
 			} else {
 				log.error "vote: failed to save $voteInstance.errors"
 				response.sendError SC_INTERNAL_SERVER_ERROR
