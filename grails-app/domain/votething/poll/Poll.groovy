@@ -19,10 +19,6 @@ class Poll {
 		uri nullable: true // unfortunately required so validation will pass
 	}
 
-	static mapping = {
-		options lazy: false
-	}
-
 	static transients = ["optionRange", "votes"]
 
 	Range<Integer> getOptionRange() {
