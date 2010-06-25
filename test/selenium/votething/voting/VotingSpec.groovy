@@ -93,4 +93,26 @@ class VotingSpec extends Specification {
 		where:
 		i << (0..4)
 	}
+
+	def "A user cannot vote on a poll more than once"() {
+		given: "a poll that a user has already voted on"
+		def poll = null
+		Poll.withTransaction {
+			poll = Poll.build()
+			Vote.build(poll: poll, user: user, option: 0)
+		}
+
+		and: "a logged-in user"
+		LoginPage.login(user)
+
+		when: "the user tries to vote on the poll again"
+		def pollPage = PollPage.open(poll)
+		pollPage.voteFor(poll.options[1])
+
+		then: "the user sees an error"
+		pollPage.errorMessages == ["You cannot vote on the same poll more than once"]
+
+		and: "no extra vote is recorded"
+		Vote.count() == 1
+	}
 }
