@@ -11,6 +11,11 @@
 			<g:if test="${flash.message}">
 				<div class="message">${flash.message}</div>
 			</g:if>
+			<g:hasErrors bean="${voteInstance}">
+				<div class="errors">
+					<g:renderErrors bean="${voteInstance}" as="list"/>
+				</div>
+			</g:hasErrors>
 			<g:form controller="poll" action="vote">
 				<g:hiddenField name="id" value="${pollInstance.id}"/>
 				<fieldset class="options">

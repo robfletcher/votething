@@ -1,9 +1,9 @@
 package votething.pages
 
-import grails.plugins.selenium.pageobjects.Page
+import grails.plugins.selenium.pageobjects.GrailsFormPage
 import votething.poll.Poll
 
-class PollPage extends Page {
+class PollPage extends GrailsFormPage {
 
 	private String expectedTitle
 

@@ -35,7 +35,7 @@ class PollController {
 				redirect action: "show", id: pollInstance.id
 			} else {
 				log.error "vote: failed to save $voteInstance.errors"
-				response.sendError SC_INTERNAL_SERVER_ERROR
+				render view: "show", model: [pollInstance: pollInstance, voteInstance: voteInstance]
 			}
 		} else {
 			log.error "vote: no poll with id $params.id exists"
