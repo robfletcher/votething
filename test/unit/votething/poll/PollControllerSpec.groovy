@@ -86,6 +86,29 @@ class PollControllerSpec extends ControllerSpec {
 		option = RandomUtils.nextInt(poll.options.size())
 	}
 
+	def "A user can only vote on a poll once"() {
+		given: "a logged in user"
+		controller.springSecurityService = Mock(SpringSecurityService)
+		controller.springSecurityService.principal >> [id: user.id]
+
+		and: "that user has already voted on the poll"
+		new Vote(user: user, poll: poll, option: 0).save()
+
+		when: "the user submits a second vote"
+		controller.params.id = poll.id
+		controller.params.option = "0"
+		controller.vote()
+
+		then: "the poll is re-displayed with an error"
+		controller.renderArgs.model.voteInstance.errors.user == "unique"
+
+		and: "the second vote is not registered"
+		Vote.count() == 1
+
+		where:
+		poll = polls.head()
+	}
+
 	def "The vote action requires a valid option"() {
 		given: "a logged in user"
 		controller.springSecurityService = Mock(SpringSecurityService)
@@ -96,13 +119,14 @@ class PollControllerSpec extends ControllerSpec {
 		controller.params.option = option
 		controller.vote()
 
-		then: "then an error is reported"
-		controller.response.status == SC_INTERNAL_SERVER_ERROR
+		then: "the poll is re-displayed with an error"
+		controller.renderArgs.model.voteInstance.errors.option == errorCode
 
 		and: "the vote is not registered"
 		Vote.count() == 0
 
 		where:
 		option << [null, 9, -1, "a"]
+		errorCode << ["nullable", "range", "range", "nullable"]
 	}
 }

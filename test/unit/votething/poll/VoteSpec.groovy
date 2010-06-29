@@ -33,7 +33,7 @@ class VoteSpec extends UnitSpec {
 		!vote.validate()
 
 		and: "range error is present on the option field"
-		vote.errors.option == "validator"
+		vote.errors.option == "range"
 
 		where:
 		option << [-1, 2]
