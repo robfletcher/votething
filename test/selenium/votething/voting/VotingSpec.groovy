@@ -105,14 +105,10 @@ class VotingSpec extends Specification {
 		and: "a logged-in user"
 		LoginPage.login(user)
 
-		when: "the user tries to vote on the poll again"
+		when: "the visits the poll page"
 		def pollPage = PollPage.open(poll)
-		pollPage.voteFor(poll.options[1])
 
-		then: "the user sees an error"
-		pollPage.errorMessages == ["You cannot vote on the same poll more than once"]
-
-		and: "no extra vote is recorded"
-		Vote.count() == 1
+		then: "the user sees the results of the poll"
+		!pollPage.votingEnabled
 	}
 }

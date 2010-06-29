@@ -49,4 +49,8 @@ class PollPage extends GrailsFormPage {
 		selenium.clickAndWait "css=input[name=submitVote]"
 		return new PollPage()
 	}
+
+	boolean isVotingEnabled() {
+		selenium.isElementPresent("css=input[name=submitVote]")
+	}
 }
