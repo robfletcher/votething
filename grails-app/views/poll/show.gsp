@@ -16,20 +16,22 @@
 					<g:renderErrors bean="${voteInstance}" as="list"/>
 				</div>
 			</g:hasErrors>
-			<g:form controller="poll" action="vote">
-				<g:hiddenField name="id" value="${pollInstance.id}"/>
-				<fieldset class="options">
-					<legend><g:message code="default.options.label" default="Choose:"/></legend>
-					<ol>
-						<g:each var="option" in="${pollInstance.options}" status="i">
-							<li>
-								<label><g:radio value="${i}" name="option" id="option-${i}"/>${option}</label>
-							</li>
-						</g:each>
-					</ol>
-					<g:submitButton name="submitVote" value="${message(code: 'button.vote.label', default: 'Vote')}"/>
-				</fieldset>
-			</g:form>
+			<poll:userHasNotVoted poll="${pollInstance}">
+				<g:form controller="poll" action="vote">
+					<g:hiddenField name="id" value="${pollInstance.id}"/>
+					<fieldset class="options">
+						<legend><g:message code="default.options.label" default="Choose:"/></legend>
+						<ol>
+							<g:each var="option" in="${pollInstance.options}" status="i">
+								<li>
+									<label><g:radio value="${i}" name="option" id="option-${i}"/>${option}</label>
+								</li>
+							</g:each>
+						</ol>
+						<g:submitButton name="submitVote" value="${message(code: 'button.vote.label', default: 'Vote')}"/>
+					</fieldset>
+				</g:form>
+			</poll:userHasNotVoted>
 		</div>
 	</body>
 </html>

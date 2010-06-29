@@ -86,7 +86,7 @@ log4j = {
 }
 
 grails.gorm.default.mapping = {
-	"user-type"(type: org.joda.time.contrib.hibernate.PersistentDateTime, class: org.joda.time.DateTime)
+	"user-type" type: org.joda.time.contrib.hibernate.PersistentDateTime, class: org.joda.time.DateTime
 }
      
 // Added by the Spring Security Core plugin:
