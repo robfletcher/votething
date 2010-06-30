@@ -17,7 +17,7 @@
 				</div>
 			</g:hasErrors>
 			<poll:userHasNotVoted poll="${pollInstance}">
-				<g:form controller="poll" action="vote">
+				<g:form controller="poll" action="vote" name="vote">
 					<g:hiddenField name="id" value="${pollInstance.id}"/>
 					<fieldset class="options">
 						<legend><g:message code="default.options.label" default="Choose:"/></legend>
@@ -32,6 +32,13 @@
 					</fieldset>
 				</g:form>
 			</poll:userHasNotVoted>
+			<poll:userHasVoted poll="${pollInstance}">
+				<ul id="poll-result">
+					<poll:eachOption poll="${pollInstance}">
+						<li style="width: ${pct}%"><span class="option">${option}</span><span class="votes">${votes}</span></li>
+					</poll:eachOption>
+				</ul>
+			</poll:userHasVoted>
 		</div>
 	</body>
 </html>

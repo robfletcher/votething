@@ -110,5 +110,6 @@ class VotingSpec extends Specification {
 
 		then: "the user sees the results of the poll"
 		!pollPage.votingEnabled
+		pollPage.resultVisible
 	}
 }

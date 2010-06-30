@@ -113,4 +113,33 @@ class PollTagLibSpec extends TagLibSpec {
 		userHasNotVoted(poll: poll) { "body" } != "body"
 	}
 
+	def "poll:results requires a poll"() {
+		when: "the tag is invoked without a 'poll' attribute"
+		results([:])
+
+		then: "an exception is raised"
+		thrown(GrailsTagException)
+	}
+
+	def "poll:eachOption outputs the results of a poll"() {
+		given: "a poll"
+		def poll = new Poll(options: ["Option 1", "Option 2", "Option 3", "Option 4"])
+		mockDomain Poll, [poll]
+
+		and: "some votes"
+		def votes = []
+		6.times { votes << new Vote(poll: poll, option: 0) }
+		4.times { votes << new Vote(poll: poll, option: 1) }
+		2.times { votes << new Vote(poll: poll, option: 2) }
+		mockDomain Vote, votes
+
+		expect:
+		eachOption(poll: poll) { option, votes, pct -> "$option: $votes ($pct%)\n" } == """
+Option 1: 8 (50%)
+Option 2: 4 (33%)
+Option 3: 2 (18%)
+Option 4: 0 (0%)
+		"""
+	}
+
 }

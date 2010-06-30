@@ -51,6 +51,10 @@ class PollPage extends GrailsFormPage {
 	}
 
 	boolean isVotingEnabled() {
-		selenium.isElementPresent("css=input[name=submitVote]")
+		selenium.isElementPresent("css=form#vote")
+	}
+
+	boolean isResultVisible() {
+		selenium.isElementPresent("css=ul#poll-result")
 	}
 }
