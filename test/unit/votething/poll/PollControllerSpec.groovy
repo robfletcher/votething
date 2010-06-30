@@ -6,6 +6,7 @@ import static javax.servlet.http.HttpServletResponse.*
 import votething.auth.User
 import org.apache.commons.lang.math.RandomUtils
 import grails.plugins.springsecurity.SpringSecurityService
+import votething.auth.UserService
 
 class PollControllerSpec extends ControllerSpec {
 
@@ -63,8 +64,8 @@ class PollControllerSpec extends ControllerSpec {
 
 	def "A user can vote on a poll"() {
 		given: "a logged in user"
-		controller.springSecurityService = Mock(SpringSecurityService)
-		controller.springSecurityService.principal >> [id: user.id]
+		controller.userService = Mock(UserService)
+		controller.userService.currentUser >> user
 
 		when: "the user submits a vote"
 		controller.params.id = poll.id
@@ -88,8 +89,8 @@ class PollControllerSpec extends ControllerSpec {
 
 	def "A user can only vote on a poll once"() {
 		given: "a logged in user"
-		controller.springSecurityService = Mock(SpringSecurityService)
-		controller.springSecurityService.principal >> [id: user.id]
+		controller.userService = Mock(UserService)
+		controller.userService.currentUser >> user
 
 		and: "that user has already voted on the poll"
 		new Vote(user: user, poll: poll, option: 0).save()
@@ -111,8 +112,8 @@ class PollControllerSpec extends ControllerSpec {
 
 	def "The vote action requires a valid option"() {
 		given: "a logged in user"
-		controller.springSecurityService = Mock(SpringSecurityService)
-		controller.springSecurityService.principal >> [id: user.id]
+		controller.userService = Mock(UserService)
+		controller.userService.currentUser >> user
 
 		when: "the user submits a vote with an invalid option"
 		controller.params.id = polls[0].id

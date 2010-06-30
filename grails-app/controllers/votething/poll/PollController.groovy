@@ -1,15 +1,13 @@
 package votething.poll
 
 import grails.plugins.springsecurity.Secured
-import votething.auth.Role
-import static javax.servlet.http.HttpServletResponse.*
-import votething.auth.User
+import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND
 
 class PollController {
 
 	static allowedMethods = [vote: "POST"]
 
-	def springSecurityService
+	def userService
 
 	def beforeInterceptor = {
 		println params
@@ -29,7 +27,7 @@ class PollController {
 	vote = {
 		def pollInstance = params.id ? Poll.read(params.id) : null
 		if (pollInstance) {
-			def voteInstance = new Vote(user: loggedInUser, poll: pollInstance, option: params.int("option"))
+			def voteInstance = new Vote(user: userService.currentUser, poll: pollInstance, option: params.int("option"))
 			log.info "vote: saving ${voteInstance.dump()}"
 			if (voteInstance.save()) {
 				redirect action: "show", id: pollInstance.id
@@ -41,11 +39,6 @@ class PollController {
 			log.error "vote: no poll with id $params.id exists"
 			response.sendError SC_NOT_FOUND
 		}
-	}
-
-	private User getLoggedInUser() {
-		def userDetails = springSecurityService.principal
-		userDetails ? User.get(userDetails.id) : null
 	}
 
 }
