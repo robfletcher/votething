@@ -41,4 +41,21 @@ class PollController {
 		}
 	}
 
+	@Secured("ROLE_USER")
+	def create = {
+		def pollInstance = new Poll()
+		pollInstance.properties = params
+		[pollInstance: pollInstance]
+	}
+
+	@Secured("ROLE_USER")
+	def save = {
+		def pollInstance = new Poll(params)
+		if (pollInstance.save(flush: true)) {
+			flash.message = message(code: "default.created.message", args: [message(code: "poll.label", default: "Poll"), pollInstance.id])
+			redirect action: "show", id: pollInstance.id
+		} else {
+			render view: "create", model: [pollInstance: pollInstance]
+		}
+	}
 }

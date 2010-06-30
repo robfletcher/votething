@@ -42,8 +42,20 @@ class PollSpec extends UnitSpec {
 		then: "validation fails"
 		!poll.validate()
 
-		and: "minimum size are present set on the options field"
+		and: "minimum size error is present on the options field"
 		poll.errors.options == "minSize"
+	}
+
+	def "Poll options cannot be blank"() {
+		when: "a poll is created with blank options"
+		def poll = new Poll(title: "whatever", creator: user, options: ["", ""])
+
+		then: "validation fails"
+		!poll.validate()
+
+		and: "blank error is set on the options field"
+		poll.errors."options[0]" == "blank"
+		poll.errors."options[1]" == "blank"
 	}
 	
 	def "Date created is set automatically"() {
