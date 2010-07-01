@@ -1,13 +1,19 @@
-var Ajax;
-if (Ajax && (Ajax != null)) {
-	Ajax.Responders.register({
-	  onCreate: function() {
-        if($('spinner') && Ajax.activeRequestCount>0)
-          Effect.Appear('spinner',{duration:0.5,queue:'end'});
-	  },
-	  onComplete: function() {
-        if($('spinner') && Ajax.activeRequestCount==0)
-          Effect.Fade('spinner',{duration:0.5,queue:'end'});
-	  }
-	});
+$(document).ready(function() {
+	$("a.addOption").click(addOption);
+});
+
+$(document).ready(function() {
+	$("a.removeOption").click(removeOption);
+});
+
+function addOption(e) {
+	var index = $("ol#options li").size();
+	var newOption = $("ol#options li:last").clone();
+	newOption.children("input").attr("id", "options_"+index).attr("name", "options["+index+"]").attr("value", "");
+	newOption.children("a.removeOption").click(removeOption);
+	$("ol#options").append(newOption);
+}
+
+function removeOption(e) {
+	$(e.target).parent("li").remove();
 }

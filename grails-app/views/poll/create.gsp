@@ -34,12 +34,16 @@
 						</ol>
 					</fieldset>
 					<fieldset>
-						<ol>
+						<ol id="options">
 							<g:set var="range" value="${pollInstance.options ? pollInstance.optionRange : 0..<2}"/>
 							<g:each var="i" in="${range}">
-								<li><bean:field property="options[$i]" id="options_$i" label=""/></li>
+								<li>
+									<bean:field property="options[${i}]" id="options_${i}" label=""/>
+									<a class="removeOption" href="#"><g:message code="button.option.remove.label" default="Remove"/></a>
+								</li>
 							</g:each>
 						</ol>
+						<a class="addOption" href="#"><g:message code="button.option.add.label" default="Add"/></a>
 					</fieldset>
 				</bean:withBean>
 				<div class="buttons">
