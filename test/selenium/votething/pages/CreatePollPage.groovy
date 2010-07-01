@@ -39,11 +39,11 @@ class CreatePollPage extends GrailsFormPage {
 	}
 
 	boolean hasFieldErrors(String name) {
-		selenium.getAttribute("css=input[name=$name]@class") =~ /\berror\b/
+		selenium.getAttribute("css=input#$name@class") =~ /\berror\b/
 	}
 
 	String getFieldErrors(String name) {
-		selenium.getText("css=input[name=$name] + .errorMessage")
+		selenium.getText("css=input#$name + .errorMessage")
 	}
 
 

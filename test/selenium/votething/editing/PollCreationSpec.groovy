@@ -45,6 +45,8 @@ class PollCreationSpec extends Specification {
 		then: "errors are displayed"
 		createPage.hasFieldErrors("title")
 		createPage.getFieldErrors("title") == "Property [title] of class [class votething.poll.Poll] cannot be blank"
+		createPage.hasFieldErrors("options_0")
+		createPage.hasFieldErrors("options_1")
 
 	}
 

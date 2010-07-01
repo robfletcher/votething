@@ -31,7 +31,7 @@
 							<bean:field property="title"/>
 							<g:set var="range" value="${pollInstance.options ? pollInstance.optionRange : 0..<2}"/>
 							<g:each var="i" in="${range}">
-								<bean:field property="options[$i]"/>
+								<bean:field property="options[$i]" id="options_$i"/>
 							</g:each>
 						</ol>
 					</bean:withBean>
