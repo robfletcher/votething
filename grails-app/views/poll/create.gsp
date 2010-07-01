@@ -1,7 +1,8 @@
 <%@ page import="votething.poll.Poll" %>
-<bean:requiredIndicator> required</bean:requiredIndicator>
-<bean:inputTemplate><li>${label}${field}<g:if test="${errors}"><span class="errorMessage">${errors}</span></g:if></li></bean:inputTemplate>
+<bean:requiredIndicator>required</bean:requiredIndicator>
+<bean:inputTemplate>${label}${field}<g:if test="${errors}">${errors}</g:if></bean:inputTemplate>
 <bean:labelTemplate><label for="${fieldId}" class="${errorClassToUse}${required}">${label}</label></bean:labelTemplate>
+<bean:errorTemplate><span class="errorMessage">${message.encodeAsHTML()}</span></bean:errorTemplate>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -21,21 +22,26 @@
 			</g:if>
 			<g:hasErrors bean="${pollInstance}">
 				<div class="errors">
+					<g:eachError><p>${it.field}: ${it.code}</p></g:eachError>
 					<g:renderErrors bean="${pollInstance}" as="list"/>
 				</div>
 			</g:hasErrors>
 			<g:form action="save" method="post">
-				<fieldset>
-					<bean:withBean beanName="pollInstance">
+				<bean:withBean beanName="pollInstance">
+					<fieldset>
 						<ol>
-							<bean:field property="title"/>
+							<li><bean:field property="title"/></li>
+						</ol>
+					</fieldset>
+					<fieldset>
+						<ol>
 							<g:set var="range" value="${pollInstance.options ? pollInstance.optionRange : 0..<2}"/>
 							<g:each var="i" in="${range}">
-								<bean:field property="options[$i]" id="options_$i"/>
+								<li><bean:field property="options[$i]" id="options_$i" label=""/></li>
 							</g:each>
 						</ol>
-					</bean:withBean>
-				</fieldset>
+					</fieldset>
+				</bean:withBean>
 				<div class="buttons">
 					<span class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}"/></span>
 				</div>
