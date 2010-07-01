@@ -24,7 +24,7 @@ class CreatePollPage extends GrailsFormPage {
 		pageTitleIs "Create Poll"
 	}
 
-	String getTitle() {
+	String getPageTitle() {
 		selenium.title
 	}
 

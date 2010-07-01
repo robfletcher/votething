@@ -2,7 +2,6 @@ package votething.poll
 
 import grails.plugin.spock.UnitSpec
 import votething.auth.User
-import grails.plugin.spock.IntegrationSpec
 
 class PollSpec extends UnitSpec {
 

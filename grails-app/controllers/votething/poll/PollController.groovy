@@ -51,6 +51,7 @@ class PollController {
 	@Secured("ROLE_USER")
 	def save = {
 		def pollInstance = new Poll(params)
+		pollInstance.creator = userService.currentUser
 		if (pollInstance.save(flush: true)) {
 			flash.message = message(code: "default.created.message", args: [message(code: "poll.label", default: "Poll"), pollInstance.id])
 			redirect action: "show", id: pollInstance.id
