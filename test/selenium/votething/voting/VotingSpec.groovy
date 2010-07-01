@@ -15,7 +15,7 @@ class VotingSpec extends Specification {
 	@Shared User user
 
 	def setupSpec() {
-		Poll.withTransaction {
+		User.withTransaction {
 			user = User.build(username: "blackbeard")
 			UserRole.create(user, Role.findByAuthority(Role.USER), true)
 		}
@@ -23,6 +23,7 @@ class VotingSpec extends Specification {
 
 	def cleanup() {
 		LoginPage.logout()
+
 		Poll.withTransaction {
 			Vote.list()*.delete()
 			Poll.list()*.delete()
@@ -30,7 +31,7 @@ class VotingSpec extends Specification {
 	}
 
 	def cleanupSpec() {
-		Poll.withTransaction {
+		User.withTransaction {
 			UserRole.removeAll Role.findByAuthority(Role.USER)
 			User.list()*.delete()
 		}

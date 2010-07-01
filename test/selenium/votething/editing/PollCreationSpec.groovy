@@ -14,17 +14,25 @@ class PollCreationSpec extends Specification {
 	@Shared User user
 
 	def setupSpec() {
-		user = User.build(username: "blackbeard")
-		UserRole.create(user, Role.findByAuthority(Role.USER), true)
+		User.withTransaction {
+			user = User.build(username: "blackbeard")
+			UserRole.create(user, Role.findByAuthority(Role.USER), true)
+		}
 	}
 
 	def cleanup() {
 		LoginPage.logout()
+
+		Poll.withTransaction {
+			Poll.list()*.delete()
+		}
 	}
 
 	def cleanupSpec() {
-		UserRole.removeAll Role.findByAuthority(Role.USER)
-		User.list()*.delete(flush: true)
+		User.withTransaction {
+			UserRole.removeAll Role.findByAuthority(Role.USER)
+			User.list()*.delete(flush: true)
+		}
 	}
 
 	def "Only logged in users can create polls"() {
@@ -60,8 +68,8 @@ class PollCreationSpec extends Specification {
 		when: "the user submits the form with valid details"
 		def createPage = CreatePollPage.open()
 		createPage.title = title
-		createPage."options\\[0\\]" = options[0]
-		createPage."options\\[1\\]" = options[1]
+		createPage.options_0 = options[0]
+		createPage.options_1 = options[1]
 		def pollPage = createPage.save()
 
 		then: "a poll is created"

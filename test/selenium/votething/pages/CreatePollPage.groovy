@@ -46,5 +46,20 @@ class CreatePollPage extends GrailsFormPage {
 		selenium.getText("css=input#$name + .errorMessage")
 	}
 
+	def propertyMissing(String name) {
+		if (name ==~ /options_\d+/) {
+			selenium.getValue("css=input#$name")
+		} else {
+			super.propertyMissing(name)
+		}
+	}
+
+	def propertyMissing(String name, Object value) {
+		if (name ==~ /options_\d+/) {
+			selenium.type("css=input#$name", value)
+		} else {
+			super.propertyMissing(name, value)
+		}
+	}
 
 }
