@@ -24,7 +24,7 @@ class Poll {
 		}
 	}
 
-	static transients = ["optionRange", "votes"]
+	static transients = ["optionRange", "votes", "voteCount"]
 
 	Range<Integer> getOptionRange() {
 		0..<options.size()
@@ -34,5 +34,9 @@ class Poll {
 		optionRange.collect {
 			Vote.countByPollAndOption(this, it)
 		}
+	}
+
+	int getVoteCount() {
+		Vote.countByPoll(this)
 	}
 }

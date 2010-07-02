@@ -11,6 +11,15 @@ h1, h2 {
 	font-size: 1em;
 }
 
+a {
+	color: #333;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
 ol {
 	padding: 0;
 	margin: 0;
@@ -25,11 +34,11 @@ ol li {
 /* Messages and errors */
 
 .message {
-    background: #f3f8fc url(/images/skin/information.png) 8px 50% no-repeat;
+	background: #f3f8fc url(/images/skin/information.png) 8px 50% no-repeat;
 	border: 1px solid #b2d1ff;
 	color: #006dba;
-    margin: 10px 0 5px 0;
-    padding: 5px 5px 5px 30px
+	margin: 10px 0 5px 0;
+	padding: 5px 5px 5px 30px
 }
 
 .errorMessage {
@@ -39,7 +48,7 @@ ol li {
 	display: block;
 	font-size: 14px;
 	line-height: 16px;
-    padding: 4px 4px 4px 30px;
+	padding: 4px 4px 4px 30px;
 }
 
 fieldset .errorMessage {
@@ -64,15 +73,9 @@ header nav {
 header nav .loggedInMessage,
 header nav a {
 	border-right: 1px solid #a9a9a9;
-	color: #000;
 	display: inline-block;
 	padding: 4px 8px;
-	text-decoration: none;
 	vertical-align: middle;
-}
-
-header nav a:hover {
-	text-decoration: underline;
 }
 
 header nav a:last-child {
@@ -106,14 +109,14 @@ label.required:after {
 }
 
 input, select, textarea {
-    background-color: #fcfcfc;
-    border: 1px solid #ccc;
+	background-color: #fcfcfc;
+	border: 1px solid #ccc;
 	font-size: 16px;
-    padding: 2px 4px;
+	padding: 2px 4px;
 }
 
 select {
-   padding: 2px 2px 2px 0;
+	padding: 2px 2px 2px 0;
 }
 
 textarea {
@@ -123,11 +126,11 @@ textarea {
 }
 
 input:focus, select:focus, textarea:focus {
-    border: 1px solid #b2d1ff;
+	border: 1px solid #b2d1ff;
 }
 
 input.error, select.error, textarea.error {
-    border: 1px solid #f00;
+	border: 1px solid #f00;
 }
 
 fieldset {
@@ -181,15 +184,8 @@ fieldset#options ol li input {
 
 a.removeOption,
 a.addOption {
-	color: #a9a9a9;
 	font-size: 12px;
-	text-decoration: none;
 	vertical-align: middle;
-}
-
-a.removeOption:hover,
-a.addOption:hover {
-	text-decoration: underline;
 }
 
 a.removeOption {
@@ -244,6 +240,7 @@ ol#poll-result li {
 ol#poll-result li:first-child {
 	margin-top: 0;
 }
+
 ol#poll-result li:last-child {
 	margin-bottom: 0;
 }
@@ -269,4 +266,40 @@ input#remember_me {
 	border: none;
 	vertical-align: text-top;
 	width: auto;
+}
+
+/* List page */
+table {
+	border: 1px solid #ccc;
+	width: 100%
+}
+
+table thead {
+	background-color: #f3f3f3;
+}
+
+td, th {
+	font-size: 14px;
+	line-height: 12px;
+	padding: 4px 8px;
+	text-align: left;
+	vertical-align: top;
+}
+
+th a {
+	display: block;
+	width: 100%;
+}
+
+th.asc a, th.desc a {
+	background-position: right;
+	background-repeat: no-repeat;
+}
+
+th.asc a {
+	background-image: url(/images/skin/sorted_asc.gif);
+}
+
+th.desc a {
+	background-image: url(/images/skin/sorted_desc.gif);
 }

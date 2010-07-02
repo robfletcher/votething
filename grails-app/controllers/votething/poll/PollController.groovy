@@ -14,6 +14,15 @@ class PollController {
 		log.debug params
 	}
 
+	def index = {
+		redirect action: "list", params: params
+	}
+
+	def list = {
+		params.max = Math.min(params.max ? params.int("max") : 10, 100)
+		[pollInstanceList: Poll.list(params), pollInstanceTotal: Poll.count()]
+	}
+
 	@Secured("ROLE_USER")
 	def show = {
 		def pollInstance = params.id ? Poll.read(params.id) : null
