@@ -2,10 +2,6 @@
 
 ## Basic functionality
 
-* Logged in user can vote on a public poll
-   * Only one vote per user
-   * Generate poll URL nicely
-
 * User can create a public poll
    * Must be logged in
    * Creates poll with unique url
@@ -21,6 +17,10 @@
 * User can log in / register via openId
 
 * Invitees are notified when poll is created
+
+## Technical
+
+* Minification & bundling of CSS/JS
 
 ## Future
 
