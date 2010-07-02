@@ -1,5 +1,6 @@
 body {
 	font-size: 18px;
+	font-family: helvetica verdana, arial, sans-serif;
 }
 
 img {
@@ -10,13 +11,38 @@ h1, h2 {
 	font-size: 1em;
 }
 
+ol {
+	padding: 0;
+	margin: 0;
+}
+
+ol li {
+	margin: 4px 0;
+	padding: 0;
+	height: 35px;
+}
+
+/* Messages and errors */
+
 .message {
-    background: #f3f8fc url(../images/skin/information.png) 8px 50% no-repeat;
+    background: #f3f8fc url(/images/skin/information.png) 8px 50% no-repeat;
 	border: 1px solid #b2d1ff;
 	color: #006dba;
     margin: 10px 0 5px 0;
     padding: 5px 5px 5px 30px
 }
+
+.errorMessage {
+	background: #fff3f3 url(/images/skin/exclamation.png) no-repeat 8px 4px;
+	border: 1px solid red;
+	color: #c00;
+	display: block;
+	font-size: 14px;
+	line-height: 16px;
+    padding: 4px 4px 4px 30px;
+}
+
+/* Page header */
 
 header {
 	background-color: #f3f3f3;
@@ -53,26 +79,85 @@ header nav a.logo {
 	padding: 0;
 }
 
+/* Main page section */
+
 section.main {
 	display: block;
-}
-
-section h2 {
-	display: block;
-	margin: 8px auto;
+	margin: 0 auto;
+	width: 500px;
 }
 
 /* General forms */
+
+label.required {
+	font-weight: bold;
+}
+
+label.required:after {
+	content: "*";
+	vertical-align: middle;
+	margin-left: 8px;
+}
+
+input, select, textarea {
+    background-color: #fcfcfc;
+    border: 1px solid #ccc;
+	font-size: 16px;
+    padding: 2px 4px;
+}
+
+select {
+   padding: 2px 2px 2px 0;
+}
+
+textarea {
+	width: 250px;
+	height: 150px;
+	vertical-align: top;
+}
+
+input:focus, select:focus, textarea:focus {
+    border: 1px solid #b2d1ff;
+}
+
+input.error, select.error, textarea.error {
+    border: 1px solid #f00;
+}
+
 fieldset {
+	border: 1px solid #ccc;
+	margin: 8px 0 0 0;
 	padding: 8px;
 }
+
+fieldset legend {
+	font-weight: bold;
+}
+
+fieldset ol li {
+	line-height: 35px;
+	list-style-type: none;
+}
+
+fieldset ol li label {
+	display: inline-block;
+	padding: 0 8px;
+	text-align: right;
+	width: 80px;
+}
+
+fieldset ol li input,
+fieldset ol li select {
+	vertical-align: baseline;
+	width: 290px;
+}
+
+/* Button panels */
 
 fieldset.buttons {
 	background-color: #f3f3f3;
 	border: 0;
-	margin: 4px auto 0;
 	text-align: center;
-	width: 500px;
 }
 
 fieldset.buttons input {
@@ -82,12 +167,31 @@ fieldset.buttons input {
 	padding: 4px 8px;
 }
 
+/* Poll create */
+fieldset#options ol li input {
+	margin-left: 96px;
+}
+
+a.removeOption,
+a.addOption {
+	font-size: 12px;
+	text-decoration: none;
+	vertical-align: middle;
+}
+
+a.removeOption:hover,
+a.addOption:hover {
+	text-decoration: underline;
+}
+
+a.removeOption {
+	margin-left: 8px;
+}
+
 /* Poll vote */
 fieldset.options {
 	border: 0;
-	margin: 0 auto;
 	padding: 0;
-	width: 500px;
 }
 
 ol#poll-vote li label {
@@ -105,17 +209,12 @@ ol#poll-vote li label input {
 ol#poll-vote,
 ol#poll-result {
 	background-color: #f3f3f3;
-	margin: 8px auto;
 	padding: 8px;
-	width: 500px;
 }
 
 ol#poll-vote li,
 ol#poll-result li {
-	height: 35px;
 	list-style-type: none;
-	margin: 4px 0;
-	padding: 0;
 }
 
 ol#poll-result li {
