@@ -21,11 +21,11 @@ class HomePage extends Page {
 	}
 
 	String getLoginMessage() {
-		isLoggedIn() ? selenium.getText("css=#login .loggedInMessage") : null
+		isLoggedIn() ? selenium.getText("css=.loggedInMessage") : null
 	}
 
 	boolean isLoggedIn() {
-		selenium.isElementPresent "css=#login .loggedInMessage"
+		selenium.isElementPresent "css=.loggedInMessage"
 	}
 
 	HomePage logOut() {

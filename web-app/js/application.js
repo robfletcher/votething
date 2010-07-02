@@ -12,6 +12,7 @@ function addOption(e) {
 	newOption.children("input").attr("id", "options_"+index).attr("value", "");
 	newOption.children("a.removeOption").click(removeOption);
 	$("fieldset#options ol").append(newOption);
+	newOption.children("input").focus();
 	return false;
 }
 

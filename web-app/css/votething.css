@@ -1,0 +1,145 @@
+body {
+	font-size: 18px;
+}
+
+img {
+	border: 0;
+}
+
+h1, h2 {
+	font-size: 1em;
+}
+
+.message {
+    background: #f3f8fc url(../images/skin/information.png) 8px 50% no-repeat;
+	border: 1px solid #b2d1ff;
+	color: #006dba;
+    margin: 10px 0 5px 0;
+    padding: 5px 5px 5px 30px
+}
+
+header {
+	background-color: #f3f3f3;
+	display: block;
+	position: relative;
+}
+
+header nav {
+	display: block;
+	margin: 8px 0;
+}
+
+header nav .loggedInMessage,
+header nav a {
+	border-right: 1px solid #a9a9a9;
+	color: #000;
+	display: inline-block;
+	padding: 4px 8px;
+	text-decoration: none;
+	vertical-align: middle;
+}
+
+header nav a:hover {
+	text-decoration: underline;
+}
+
+header nav a:last-child {
+	border: 0;
+}
+
+header nav a.logo {
+	border: none;
+	margin: 0 16px 0 0;
+	padding: 0;
+}
+
+section.main {
+	display: block;
+}
+
+section h2 {
+	display: block;
+	margin: 8px auto;
+}
+
+/* General forms */
+fieldset {
+	padding: 8px;
+}
+
+fieldset.buttons {
+	background-color: #f3f3f3;
+	border: 0;
+	margin: 4px auto 0;
+	text-align: center;
+	width: 500px;
+}
+
+fieldset.buttons input {
+	border: 1px solid #a9a9a9;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 4px 8px;
+}
+
+/* Poll vote */
+fieldset.options {
+	border: 0;
+	margin: 0 auto;
+	padding: 0;
+	width: 500px;
+}
+
+ol#poll-vote li label {
+	display: inline-block;
+	line-height: 35px;
+}
+
+ol#poll-vote li label input {
+	margin: 0 8px;
+	vertical-align: middle;
+}
+
+/* Poll results */
+
+ol#poll-vote,
+ol#poll-result {
+	background-color: #f3f3f3;
+	margin: 8px auto;
+	padding: 8px;
+	width: 500px;
+}
+
+ol#poll-vote li,
+ol#poll-result li {
+	height: 35px;
+	list-style-type: none;
+	margin: 4px 0;
+	padding: 0;
+}
+
+ol#poll-result li {
+	background-color: #6495ed;
+	min-width: 1px;
+	text-align: right;
+	white-space: nowrap;
+}
+
+ol#poll-result li:first-child,
+ol#poll-result li:last-child {
+	margin: 0;
+}
+
+ol#poll-result li .option {
+	display: inline-block;
+	line-height: 35px;
+	margin-left: 8px;
+}
+
+ol#poll-result li .votes {
+	display: inline-block;
+	font-size: 12px;
+	line-height: 35px;
+	margin-right: 8px;
+	vertical-align: middle;
+}

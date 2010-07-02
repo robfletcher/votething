@@ -55,6 +55,6 @@ class PollPage extends GrailsFormPage {
 	}
 
 	boolean isResultVisible() {
-		selenium.isElementPresent "css=ul#poll-result"
+		selenium.isElementPresent "css=ol#poll-result"
 	}
 }

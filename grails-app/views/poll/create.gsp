@@ -1,4 +1,4 @@
-<%@ page import="votething.poll.Poll" %>
+<!DOCTYPE html>
 <bean:requiredIndicator>required</bean:requiredIndicator>
 <bean:inputTemplate>${label}${field}<g:if test="${errors}">${errors}</g:if></bean:inputTemplate>
 <bean:labelTemplate><label for="${fieldId}" class="${errorClassToUse}${required}">${label}</label></bean:labelTemplate>
@@ -11,23 +11,20 @@
 		<title><g:message code="default.create.label" args="[entityName]"/></title>
 	</head>
 	<body>
-		<div class="nav">
-			<span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
-			<span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]"/></g:link></span>
-		</div>
-		<div class="body">
-			<h1><g:message code="default.create.label" args="[entityName]"/></h1>
+		<section class="main">
 			<g:if test="${flash.message}">
 				<div class="message">${flash.message}</div>
 			</g:if>
 			<g:form action="save" method="post">
 				<bean:withBean beanName="pollInstance">
 					<fieldset>
+						<legend><g:message code="createPoll.properties.label" default="Poll"/></legend>
 						<ol>
 							<li><bean:field property="title"/></li>
 						</ol>
 					</fieldset>
 					<fieldset id="options">
+						<legend><g:message code="createPoll.options.label" default="Options"/></legend>
 						<ol>
 							<g:set var="range" value="${pollInstance.options ? pollInstance.optionRange : 0..<2}"/>
 							<g:each var="i" in="${range}">
@@ -45,10 +42,10 @@
 						</g:hasErrors>
 					</fieldset>
 				</bean:withBean>
-				<div class="buttons">
-					<span class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}"/></span>
-				</div>
+				<fieldset class="buttons">
+					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}"/>
+				</fieldset>
 			</g:form>
-		</div>
+		</section>
 	</body>
 </html>
