@@ -1,12 +1,12 @@
 package votething.poll
 
 import grails.plugin.spock.ControllerSpec
-import spock.lang.Shared
-import static javax.servlet.http.HttpServletResponse.*
-import votething.auth.User
 import org.apache.commons.lang.math.RandomUtils
-import grails.plugins.springsecurity.SpringSecurityService
+import spock.lang.Shared
+import votething.auth.User
 import votething.auth.UserService
+import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND
+import static javax.servlet.http.HttpServletResponse.SC_OK
 
 class PollControllerSpec extends ControllerSpec {
 
@@ -14,13 +14,22 @@ class PollControllerSpec extends ControllerSpec {
 		new Poll(title: "Poll $i", options: ["Option 1", "Option 2", "Option 3"])
 	}
 
-	User user = new User(username: "blackbeard")
+	@Shared User user = new User(username: "blackbeard")
 
 	def setup() {
 		mockLogging PollController, true
+		mockMessage PollController
+
 		mockDomain Poll, polls
 		mockDomain Vote
 		mockDomain User, [user]
+	}
+
+	private void mockMessage(Class clazz) {
+		registerMetaClass clazz
+		clazz.metaClass.message = { Map attrs ->
+			attrs.code
+		}
 	}
 
 	def "The show action requires a valid id parameter"() {
@@ -129,5 +138,33 @@ class PollControllerSpec extends ControllerSpec {
 		where:
 		option << [null, 9, -1, "a"]
 		errorCode << ["nullable", "range", "range", "nullable"]
+	}
+
+	def "A user can create a new poll"() {
+		given: "a logged in user"
+		controller.userService = Mock(UserService)
+		controller.userService.currentUser >> user
+
+		when: "the users saves a poll"
+		controller.params.title = title
+		controller.params."options[0]" = options[0]
+		controller.params."options[1]" = options[1]
+		controller.save()
+
+		then: "the user is redirected to the poll"
+		controller.redirectArgs.action == "show"
+		def pollId = controller.redirectArgs.id
+
+		and: "the poll is saved with the submitted details"
+		def poll = Poll.get(pollId)
+		poll.title == title
+		poll.options == options
+
+		and: "the user becomes the poll creator"
+		poll.creator == user
+
+		where:
+		title = "Whatever"
+		options = ["Option 1", "Option 2"]
 	}
 }
