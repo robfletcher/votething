@@ -39,7 +39,7 @@ class PollPage extends GrailsFormPage {
 	List<String> getOptions() {
 		int numOptions = selenium.getXpathCount("//fieldset[@class='options']/ol/li")
 		numOptions == 0 ? [] : (1..numOptions).collect { i ->
-			selenium.getText("//fieldset[@class='options']/ol/li[$i]/label")
+			selenium.getText "//fieldset[@class='options']/ol/li[$i]/label"
 		}
 	}
 
@@ -51,10 +51,10 @@ class PollPage extends GrailsFormPage {
 	}
 
 	boolean isVotingEnabled() {
-		selenium.isElementPresent("css=form#vote")
+		selenium.isElementPresent "css=form#vote"
 	}
 
 	boolean isResultVisible() {
-		selenium.isElementPresent("css=ul#poll-result")
+		selenium.isElementPresent "css=ul#poll-result"
 	}
 }

@@ -137,8 +137,8 @@ class PollCreationSpec extends Specification {
 		createPage.options_2 = options[2]
 		createPage.addOption()
 		createPage.options_3 = options[3]
-		createPage.removeOption(0)
 		createPage.removeOption(1)
+		createPage.removeOption(0)
 
 		and: "submits the form"
 		def pollPage = createPage.save()

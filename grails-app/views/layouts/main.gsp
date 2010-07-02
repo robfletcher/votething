@@ -12,7 +12,7 @@
 		<div id="grailsLogo" class="logo"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails" border="0"/></a></div>
 		<div id="login">
 			<sec:ifLoggedIn>
-				<span class="message"><g:message code="welcome.message" args="[sec.username()]" default="Welcome back {0}"/></span>
+				<span class="loggedInMessage"><g:message code="welcome.message" args="[sec.username()]" default="Welcome back {0}"/></span>
 				<g:link controller="logout"><g:message code="link.logout" default="Log out"/></g:link>
 			</sec:ifLoggedIn>
 			<sec:ifNotLoggedIn>

@@ -21,20 +21,20 @@ class HomePage extends Page {
 	}
 
 	String getLoginMessage() {
-		isLoggedIn() ? selenium.getText("css=#login .message") : null
+		isLoggedIn() ? selenium.getText("css=#login .loggedInMessage") : null
 	}
 
 	boolean isLoggedIn() {
-		return selenium.isElementPresent("css=#login .message")
+		selenium.isElementPresent "css=#login .loggedInMessage"
 	}
 
 	HomePage logOut() {
-		selenium.clickAndWait("link=Log out")
+		selenium.clickAndWait "link=Log out"
 		return new HomePage()
 	}
 
 	LoginPage logIn() {
-		selenium.clickAndWait("link=Log in here")
+		selenium.clickAndWait "link=Log in here"
 		return new LoginPage()
 	}
 }

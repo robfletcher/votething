@@ -22,7 +22,7 @@ class LoginPage extends Page {
 	}
 
 	static Page login(User user, String password = "password") {
-		login(user.username, password)
+		login user.username, password
 	}
 
 	LoginPage() {
