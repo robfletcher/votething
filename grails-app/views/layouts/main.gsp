@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="no-js">
 	<head>
 		<title><g:layoutTitle default="Grails"/></title>
 		<meta charset="UTF-8"/>
@@ -10,6 +10,7 @@
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
 		<g:javascript library="jquery"/>
+		<g:javascript src="modernizr/modernizr-1.5.min.js"/>
 		<g:javascript library="application"/>
 	</head>
 	<body>
@@ -31,7 +32,7 @@
 				<h1><g:layoutTitle/></h1>
 			</header>
 			<g:if test="${flash.message}">
-				<aside class="message">${flash.message}</aside>
+				<div class="message">${flash.message}</div>
 			</g:if>
 			<g:layoutBody/>
 		</article>
