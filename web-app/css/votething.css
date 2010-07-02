@@ -42,15 +42,21 @@ ol li {
     padding: 4px 4px 4px 30px;
 }
 
+fieldset .errorMessage {
+	position: absolute;
+	left: 404px;
+	top: 0;
+	z-index: 1;
+}
+
 /* Page header */
 
 header {
-	background-color: #f3f3f3;
 	display: block;
-	position: relative;
 }
 
 header nav {
+	background-color: #f3f3f3;
 	display: block;
 	margin: 8px 0;
 }
@@ -84,7 +90,7 @@ header nav a.logo {
 section.main {
 	display: block;
 	margin: 0 auto;
-	width: 500px;
+	width: 600px;
 }
 
 /* General forms */
@@ -128,6 +134,7 @@ fieldset {
 	border: 1px solid #ccc;
 	margin: 8px 0 0 0;
 	padding: 8px;
+	position: relative;
 }
 
 fieldset legend {
@@ -143,7 +150,7 @@ fieldset ol li label {
 	display: inline-block;
 	padding: 0 8px;
 	text-align: right;
-	width: 80px;
+	width: 130px;
 }
 
 fieldset ol li input,
@@ -169,7 +176,7 @@ fieldset.buttons input {
 
 /* Poll create */
 fieldset#options ol li input {
-	margin-left: 96px;
+	margin-left: 146px;
 }
 
 a.removeOption,
@@ -190,7 +197,7 @@ a.removeOption {
 }
 
 a.addOption {
-	margin-left: 96px;
+	margin-left: 146px;
 }
 
 /* Poll vote */
@@ -260,6 +267,6 @@ ol#poll-result li .votes {
 input#remember_me {
 	background: none;
 	border: none;
-	vertical-align: middle;
+	vertical-align: text-top;
 	width: auto;
 }
