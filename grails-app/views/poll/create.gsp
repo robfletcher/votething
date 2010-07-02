@@ -12,9 +12,6 @@
 	</head>
 	<body>
 		<section class="main">
-			<g:if test="${flash.message}">
-				<div class="message">${flash.message}</div>
-			</g:if>
 			<g:form action="save" method="post">
 				<bean:withBean beanName="pollInstance">
 					<fieldset>

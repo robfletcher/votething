@@ -2,6 +2,7 @@ package votething.poll
 
 import grails.plugins.springsecurity.Secured
 import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND
+import votething.poll.Vote
 
 class PollController {
 
@@ -17,7 +18,11 @@ class PollController {
 	def show = {
 		def pollInstance = params.id ? Poll.read(params.id) : null
 		if (pollInstance) {
-			[pollInstance: pollInstance]
+			if (Vote.countByPollAndUser(pollInstance, userService.currentUser) > 0) {
+				render view: "show", model: [pollInstance: pollInstance]
+			} else {
+				render view: "vote", model: [pollInstance: pollInstance]
+			}
 		} else {
 			response.sendError SC_NOT_FOUND
 		}

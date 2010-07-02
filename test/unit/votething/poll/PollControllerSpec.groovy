@@ -45,15 +45,54 @@ class PollControllerSpec extends ControllerSpec {
 	}
 
 	def "The show action finds the poll with the specified id"() {
+		given: "a logged in user"
+		controller.userService = Mock(UserService)
+		controller.userService.currentUser >> user
+
 		when: "the show action is invoked with a valid id"
 		controller.params.id = poll.id
-		def model = controller.show()
+		controller.show()
 
 		then: "the response status is 200"
 		controller.response.status == SC_OK
 
 		and: "the correct poll is added to the model"
-		model.pollInstance == poll
+		controller.renderArgs.model.pollInstance == poll
+
+		where:
+		poll << polls
+	}
+
+	def "The show action renders the voting form if the current user has not voted"() {
+		given: "a logged in user"
+		controller.userService = Mock(UserService)
+		controller.userService.currentUser >> user
+
+		when: "the user visits the show poll page"
+		controller.params.id = poll.id
+		controller.show()
+
+		then: "the users sees the voting form"
+		controller.renderArgs.view == "vote"
+
+		where:
+		poll << polls
+	}
+
+	def "The show action renders the poll results if the current user has already voted"() {
+		given: "a logged in user"
+		controller.userService = Mock(UserService)
+		controller.userService.currentUser >> user
+
+		and: "that user has already voted"
+		new Vote(poll: poll, user: user, option: 0).save(failOnError: true)
+
+		when: "the user visits the show poll page"
+		controller.params.id = poll.id
+		controller.show()
+
+		then: "the users sees the voting form"
+		controller.renderArgs.view == "show"
 
 		where:
 		poll << polls

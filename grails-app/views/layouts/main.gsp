@@ -26,6 +26,9 @@
 				</nav>
 				<h1><g:layoutTitle/></h1>
 			</header>
+			<g:if test="${flash.message}">
+				<aside class="message">${flash.message}</aside>
+			</g:if>
 			<g:layoutBody/>
 		</article>
 	</body>
