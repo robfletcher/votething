@@ -22,6 +22,11 @@
 					</fieldset>
 					<fieldset id="options">
 						<legend><g:message code="createPoll.options.label" default="Options"/></legend>
+						<g:hasErrors bean="${pollInstance}" field="options">
+							<g:eachError bean="${pollInstance}" field="options">
+								<span class="errorMessage"><g:message error="${it}"/></span>
+							</g:eachError>
+						</g:hasErrors>
 						<ol>
 							<g:set var="range" value="${pollInstance.options ? pollInstance.optionRange : 0..<2}"/>
 							<g:each var="i" in="${range}">
@@ -32,11 +37,6 @@
 							</g:each>
 						</ol>
 						<a class="addOption" href="#"><g:message code="button.option.add.label" default="Add"/></a>
-						<g:hasErrors bean="${pollInstance}" field="options">
-							<g:eachError bean="${pollInstance}" field="options">
-								<span class="errorMessage"><g:message error="${it}"/></span>
-							</g:eachError>
-						</g:hasErrors>
 					</fieldset>
 				</bean:withBean>
 				<fieldset class="buttons">
