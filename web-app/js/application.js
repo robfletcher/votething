@@ -12,8 +12,10 @@ function addOption(e) {
 	newOption.children("input").attr("id", "options_"+index).attr("name", "options["+index+"]").attr("value", "");
 	newOption.children("a.removeOption").click(removeOption);
 	$("ol#options").append(newOption);
+	return false;
 }
 
 function removeOption(e) {
 	$(e.target).parent("li").remove();
+	return false;
 }
