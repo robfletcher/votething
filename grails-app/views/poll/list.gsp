@@ -13,7 +13,7 @@
 						<g:sortableColumn property="title" title="${message(code: 'poll.title.label', default: 'Title')}"/>
 						<g:sortableColumn property="dateCreated" title="${message(code: 'poll.dateCreated.label', default: 'Date Created')}"/>
 						<th><g:message code="poll.creator.label" default="Creator"/></th>
-						<g:sortableColumn property="voteCount" title="${message(code: 'poll.voteCount.label', default: 'Votes')}"/>
+						<th><g:message code="poll.voteCount.label" default="Votes"/></th>
 					</tr>
 				</thead>
 				<tbody>
