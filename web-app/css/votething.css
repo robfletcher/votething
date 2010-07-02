@@ -207,6 +207,8 @@ ol#poll-vote li label {
 }
 
 ol#poll-vote li label input {
+	background: none;
+	border: none;
 	margin: 0 8px;
 	vertical-align: middle;
 	width: auto;
@@ -232,9 +234,11 @@ ol#poll-result li {
 	white-space: nowrap;
 }
 
-ol#poll-result li:first-child,
+ol#poll-result li:first-child {
+	margin-top: 0;
+}
 ol#poll-result li:last-child {
-	margin: 0;
+	margin-bottom: 0;
 }
 
 ol#poll-result li .option {
