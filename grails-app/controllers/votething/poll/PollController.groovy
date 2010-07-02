@@ -11,7 +11,7 @@ class PollController {
 	def userService
 
 	def beforeInterceptor = {
-		println params
+		log.debug params
 	}
 
 	@Secured("ROLE_USER")
