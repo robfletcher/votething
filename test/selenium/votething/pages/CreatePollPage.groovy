@@ -38,6 +38,12 @@ class CreatePollPage extends GrailsFormPage {
 		new CreatePollPage()
 	}
 
+	void addOption() {
+		int optionCount = selenium.getXpathCount("//ol[@id='options']/li/input")
+		selenium.click "css=a.addOption"
+		selenium.waitForXpathCount("//ol[@id='options']/li/input", optionCount + 1)
+	}
+
 	boolean hasFieldErrors(String name) {
 		selenium.getAttribute("css=input#$name@class") =~ /\berror\b/
 	}
@@ -61,5 +67,4 @@ class CreatePollPage extends GrailsFormPage {
 			super.propertyMissing(name, value)
 		}
 	}
-
 }

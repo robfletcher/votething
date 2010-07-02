@@ -65,8 +65,10 @@ class PollCreationSpec extends Specification {
 		given: "a logged in user"
 		LoginPage.login("blackbeard")
 
-		when: "the user submits the form with valid details"
+		and: "the user is on the create poll page"
 		def createPage = CreatePollPage.open()
+
+		when: "the user submits the form with valid details"
 		createPage.title = title
 		createPage.options_0 = options[0]
 		createPage.options_1 = options[1]
@@ -86,6 +88,36 @@ class PollCreationSpec extends Specification {
 		where:
 		title = "Who is the deadliest warrior?"
 		options = ["Pirate", "Ninja"]
+	}
+
+	def "A user can add extra options to a poll"() {
+		given: "a logged in user"
+		LoginPage.login("blackbeard")
+
+		and: "the user is on the create poll page"
+		def createPage = CreatePollPage.open()
+
+		and: "the user has filled in the basic form details"
+		createPage.title = title
+		createPage.options_0 = options[0]
+		createPage.options_1 = options[1]
+
+		when: "the user adds additional options"
+		createPage.addOption()
+		createPage.options_2 = options[2]
+		createPage.addOption()
+		createPage.options_3 = options[3]
+
+		and: "submits the form"
+		def pollPage = createPage.save()
+
+		then: "a poll with additional options is created"
+		def poll = Poll.findByTitle(title)
+		poll.options == options
+
+		where:
+		title = "Who is the deadliest warrior?"
+		options = ["Pirate", "Ninja", "Spartan", "Viking"]
 	}
 
 }
