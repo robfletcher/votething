@@ -30,7 +30,6 @@ class PollTagLib {
 		attrs.poll.options.eachWithIndex { String option, int i ->
 			int votes = Vote.countByPollAndOption(attrs.poll, i)
 			def pct = (votes / totalVotes) * 100
-			log.error "$option: $votes votes ($pct%)"
 			pageScope.option = option
 			pageScope.votes = votes
 			pageScope.pct = pct
