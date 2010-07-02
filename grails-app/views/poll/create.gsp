@@ -38,7 +38,7 @@
 							<g:set var="range" value="${pollInstance.options ? pollInstance.optionRange : 0..<2}"/>
 							<g:each var="i" in="${range}">
 								<li>
-									<bean:field property="options[${i}]" id="options_${i}" label=""/>
+									<bean:field property="options" id="options_${i}" label=""/>
 									<a class="removeOption" href="#"><g:message code="button.option.remove.label" default="Remove"/></a>
 								</li>
 							</g:each>

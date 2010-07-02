@@ -147,8 +147,7 @@ class PollControllerSpec extends ControllerSpec {
 
 		when: "the users saves a poll"
 		controller.params.title = title
-		controller.params."options[0]" = options[0]
-		controller.params."options[1]" = options[1]
+		controller.params.options = options
 		controller.save()
 
 		then: "the user is redirected to the poll"

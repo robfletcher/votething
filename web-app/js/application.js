@@ -9,7 +9,7 @@ $(document).ready(function() {
 function addOption(e) {
 	var index = $("ol#options li").size();
 	var newOption = $("ol#options li:last").clone();
-	newOption.children("input").attr("id", "options_"+index).attr("name", "options["+index+"]").attr("value", "");
+	newOption.children("input").attr("id", "options_"+index).attr("value", "");
 	newOption.children("a.removeOption").click(removeOption);
 	$("ol#options").append(newOption);
 	return false;
