@@ -20,12 +20,6 @@
 			<g:if test="${flash.message}">
 				<div class="message">${flash.message}</div>
 			</g:if>
-			<g:hasErrors bean="${pollInstance}">
-				<div class="errors">
-					<g:eachError><p>${it.field}: ${it.code}</p></g:eachError>
-					<g:renderErrors bean="${pollInstance}" as="list"/>
-				</div>
-			</g:hasErrors>
 			<g:form action="save" method="post">
 				<bean:withBean beanName="pollInstance">
 					<fieldset>
@@ -33,17 +27,22 @@
 							<li><bean:field property="title"/></li>
 						</ol>
 					</fieldset>
-					<fieldset>
-						<ol id="options">
+					<fieldset id="options">
+						<ol>
 							<g:set var="range" value="${pollInstance.options ? pollInstance.optionRange : 0..<2}"/>
 							<g:each var="i" in="${range}">
 								<li>
-									<bean:field property="options" id="options_${i}" label=""/>
+									<bean:field property="options" id="options_${i}" label="" showErrors="false" value="${pollInstance.options[i] ?: ''}"/>
 									<a class="removeOption" href="#"><g:message code="button.option.remove.label" default="Remove"/></a>
 								</li>
 							</g:each>
 						</ol>
 						<a class="addOption" href="#"><g:message code="button.option.add.label" default="Add"/></a>
+						<g:hasErrors bean="${pollInstance}" field="options">
+							<g:eachError bean="${pollInstance}" field="options">
+								<span class="errorMessage"><g:message error="${it}"/></span>
+							</g:eachError>
+						</g:hasErrors>
 					</fieldset>
 				</bean:withBean>
 				<div class="buttons">

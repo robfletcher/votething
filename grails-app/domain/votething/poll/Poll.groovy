@@ -4,6 +4,7 @@ import org.joda.time.DateTime
 import votething.auth.User
 import org.springframework.validation.Errors
 import org.codehaus.groovy.grails.validation.BlankConstraint
+import org.codehaus.groovy.grails.validation.NullableConstraint
 
 class Poll {
 
@@ -16,13 +17,9 @@ class Poll {
 
 	static constraints = {
 		title blank: false
-		options minSize: 2, validator: { List<String> value, Poll self, Errors errors ->
-			value.eachWithIndex { s, i ->
-				def constraint = new BlankConstraint()
-				constraint.parameter = false
-				constraint.owningClass = Poll
-				constraint.propertyName = "options[$i]"
-				constraint.validate self, s, errors
+		options minSize: 2, validator: { List<String> value ->
+			if (value.any { !it }) {
+				return "blank"
 			}
 		}
 	}

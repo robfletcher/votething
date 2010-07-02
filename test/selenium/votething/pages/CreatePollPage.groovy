@@ -39,16 +39,16 @@ class CreatePollPage extends GrailsFormPage {
 	}
 
 	void addOption() {
-		int optionCount = selenium.getXpathCount("//ol[@id='options']/li/input")
+		int optionCount = selenium.getXpathCount("//fieldset[@id='options']/ol/li")
 		selenium.click "css=a.addOption"
-		selenium.waitForXpathCount "//ol[@id='options']/li/input", optionCount + 1
+		selenium.waitForXpathCount "//fieldset[@id='options']/ol/li", optionCount + 1
 	}
 
 	void removeOption(int index) {
-		int optionCount = selenium.getXpathCount("//ol[@id='options']/li/input")
+		int optionCount = selenium.getXpathCount("//fieldset[@id='options']/ol/li")
 		int i = index + 1 // 1 based index
-		selenium.click "//ol[@id='options']/li[$i]/a[@class='removeOption']"
-		selenium.waitForXpathCount "//ol[@id='options']/li/input", optionCount - 1
+		selenium.click "//fieldset[@id='options']/ol/li[$i]/a[@class='removeOption']"
+		selenium.waitForXpathCount "//fieldset[@id='options']/ol/li", optionCount - 1
 	}
 
 	boolean hasFieldErrors(String name) {
@@ -57,6 +57,10 @@ class CreatePollPage extends GrailsFormPage {
 
 	String getFieldErrors(String name) {
 		selenium.getText "css=input#$name + .errorMessage"
+	}
+
+	String getOptionErrors() {
+		selenium.getText "css=fieldset#options .errorMessage"
 	}
 
 	def propertyMissing(String name) {

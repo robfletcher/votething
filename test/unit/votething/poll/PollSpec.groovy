@@ -47,14 +47,16 @@ class PollSpec extends UnitSpec {
 
 	def "Poll options cannot be blank"() {
 		when: "a poll is created with blank options"
-		def poll = new Poll(title: "whatever", creator: user, options: ["", ""])
+		def poll = new Poll(title: "whatever", creator: user, options: options)
 
 		then: "validation fails"
 		!poll.validate()
 
 		and: "blank error is set on the options field"
-		poll.errors."options[0]" == "blank"
-		poll.errors."options[1]" == "blank"
+		poll.errors.options == "blank"
+
+		where:
+		options << [[null, null], ["", ""]]
 	}
 	
 	def "Date created is set automatically"() {

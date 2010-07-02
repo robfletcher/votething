@@ -59,6 +59,7 @@ class PollCreationSpec extends Specification {
 		createPage.getFieldErrors("title") == "Property [title] of class [class votething.poll.Poll] cannot be blank"
 		createPage.hasFieldErrors("options_0")
 		createPage.hasFieldErrors("options_1")
+		createPage.getOptionErrors() == "Property [options] of class [class votething.poll.Poll] with value [[, ]] does not pass custom validation"
 	}
 
 	def "A user can create a poll"() {
