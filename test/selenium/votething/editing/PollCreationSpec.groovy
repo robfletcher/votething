@@ -75,6 +75,7 @@ class PollCreationSpec extends Specification {
 		def pollPage = createPage.save()
 
 		then: "a poll is created"
+		pollPage.flashMessage ==~ /Poll \d+ created/
 		def poll = Poll.findByTitle(title)
 		poll != null
 		poll.title == title
@@ -112,8 +113,40 @@ class PollCreationSpec extends Specification {
 		def pollPage = createPage.save()
 
 		then: "a poll with additional options is created"
+		pollPage.flashMessage ==~ /Poll \d+ created/
 		def poll = Poll.findByTitle(title)
 		poll.options == options
+
+		where:
+		title = "Who is the deadliest warrior?"
+		options = ["Pirate", "Ninja", "Spartan", "Viking"]
+	}
+
+	def "A user can remove options from a poll"() {
+		given: "a logged in user"
+		LoginPage.login("blackbeard")
+
+		and: "the user is on the create poll page"
+		def createPage = CreatePollPage.open()
+
+		and: "the user has filled in the basic form details"
+		createPage.title = title
+
+		when: "the user adds and removes options"
+		createPage.addOption()
+		createPage.options_2 = options[2]
+		createPage.addOption()
+		createPage.options_3 = options[3]
+		createPage.removeOption(0)
+		createPage.removeOption(1)
+
+		and: "submits the form"
+		def pollPage = createPage.save()
+
+		then: "a poll with the correct options is created"
+		pollPage.flashMessage ==~ /Poll \d+ created/
+		def poll = Poll.findByTitle(title)
+		poll.options == options[2..3]
 
 		where:
 		title = "Who is the deadliest warrior?"
