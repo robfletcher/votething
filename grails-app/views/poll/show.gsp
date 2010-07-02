@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta name="layout" content="main"/>
 		<g:set var="entityName" value="${message(code: 'poll.label', default: 'Poll')}"/>
 		<title><g:message code="poll.show.label" args="[pollInstance.title]" default="{0}"/></title>

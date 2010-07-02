@@ -254,3 +254,12 @@ ol#poll-result li .votes {
 	margin-right: 8px;
 	vertical-align: middle;
 }
+
+/* Login form */
+
+input#remember_me {
+	background: none;
+	border: none;
+	vertical-align: middle;
+	width: auto;
+}

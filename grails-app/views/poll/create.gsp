@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<bean:requiredIndicator> required</bean:requiredIndicator>
+<bean:requiredIndicator>required</bean:requiredIndicator>
 <bean:inputTemplate>${label}${field}<g:if test="${errors}">${errors}</g:if></bean:inputTemplate>
 <bean:labelTemplate><label for="${fieldId}" class="${errorClassToUse}${required}">${label}</label></bean:labelTemplate>
 <bean:errorTemplate><span class="errorMessage">${message.encodeAsHTML()}</span></bean:errorTemplate>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta name="layout" content="main"/>
 		<g:set var="entityName" value="${message(code: 'poll.label', default: 'Poll')}"/>
 		<title><g:message code="default.create.label" args="[entityName]"/></title>
@@ -17,7 +16,7 @@
 					<fieldset>
 						<legend><g:message code="createPoll.properties.label" default="Poll"/></legend>
 						<ol>
-							<li><bean:field property="title"/></li>
+							<li><bean:field property="title" autofocus="autofocus"/></li>
 						</ol>
 					</fieldset>
 					<fieldset id="options">
@@ -44,5 +43,8 @@
 				</fieldset>
 			</g:form>
 		</section>
+		<g:javascript>
+			if (!Modernizr.input.autofocus) $("input#title").focus();
+		</g:javascript>
 	</body>
 </html>

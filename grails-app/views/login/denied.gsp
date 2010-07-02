@@ -1,10 +1,13 @@
-<head>
-<meta name='layout' content='main' />
-<title>Denied</title>
-</head>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="layout" content="main"/>
+		<title><g:message code="denied.label" default="Denied"/></title>
+	</head>
 
-<body>
-<div class='body'>
-	<div class='errors'>Sorry, you're not authorized to view this page.</div>
-</div>
-</body>
+	<body>
+		<section class="main">
+			<div class="errors"><g:message code="error.access.denied" default="Sorry, you're not authorized to view this page."/></div>
+		</section>
+	</body>
+</html>

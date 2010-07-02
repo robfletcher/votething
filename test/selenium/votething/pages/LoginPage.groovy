@@ -65,6 +65,6 @@ class LoginPage extends Page {
 	}
 
 	String getLoginError() {
-		selenium.isElementPresent("css=.login_message") ? selenium.getText("css=.login_message") : null
+		selenium.isElementPresent("css=.message") ? selenium.getText("css=.message") : null
 	}
 }
