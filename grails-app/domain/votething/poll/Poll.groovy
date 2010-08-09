@@ -37,6 +37,6 @@ class Poll {
 	}
 
 	int getVoteCount() {
-		Vote.countByPoll(this)
+		Vote.countByPoll(this, [cache: true])
 	}
 }
